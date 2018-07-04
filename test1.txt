@@ -1,10 +1,1 @@
- Volume in drive C is SYSTEM
- Volume Serial Number is FAE1-9086
-
- Directory of C:\pythonproject
-
-07/04/2018  12:11 PM    <DIR>          .
-07/04/2018  12:11 PM    <DIR>          ..
-07/04/2018  12:11 PM                 0 test1.txt
-               1 File(s)              0 bytes
-               2 Dir(s)  274,342,494,208 bytes free
+hi this is vasu
