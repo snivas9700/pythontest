@@ -1,0 +1,33 @@
+  General Total Quote Data,
+DealListPrice,944276.8720500001
+DealSize,167708.57888383992
+DealTMC,195750.19721999997
+DealPredictedQuotePrice,197552.0
+  Price Range Data (Line Item Sum),
+DealAdjLowPrice,63788.0
+DealAdjMedPrice,190041.0
+DealAdjHighPrice,382492.0
+  Quoted Price Data (Line Item Sum),
+DealQuotePrice,943205.76297
+DealQuotePriceWinProb,0.0014157066357600066
+DealQuotePriceGP,747455.5657500001
+DealQuotePriceExpectedGP,1058.177804368025
+  Optimal Price Data (Line Item Sum),
+DealOptimalPrice,282335.0
+DealOptimalPriceWinProb,0.2945269570596389
+DealOptimalPriceGP,86584.74
+DealOptimalPriceExpectedGP,25501.54
+DealOptimalPriceIntervalLow,260645.0
+DealOptimalPriceIntervalHigh,307838.0
+  Quoted Price Data (Bottom-Line),
+DealBotLineQuotePrice,943205.76297
+DealBotLineQuotePriceWinProb,3.0336681420659715e-05
+DealBotLineQuotePriceGP,747455.5657500001
+DealBotLineQuotePriceExpectedGP,22.675321374256722
+  Optimal Price Data (Bottom-Line),
+DealBotLineOptimalPrice,278443.4932608
+DealBotLineOptimalPriceWinProb,0.19734384497539006
+DealBotLineOptimalPriceGP,82693.29604080005
+DealBotLineOptimalPriceExpectedGP,16319.012994379682
+DealBotLineOptimalPriceIntervalLow,256297.51228955868
+DealBotLineOptimalPriceIntervalHigh,304818.034532871
