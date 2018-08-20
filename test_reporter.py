@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Dec 07 16:53:25 2017
+@author: Sai
+"""
+
+import unittest
+import numpy as np
+import pandas as pd
+import sys
+from reporter import Reporter
+from pandas.util.testing import assert_series_equal, assert_frame_equal, assert_equal
+
+class ReportTester(unittest.TestCase):
+    """
+    Class to unit test the prodconsolidator class
+    """
+
+    def test_reporter(self):
+        """
+        Test that the dataframe read in equals what you expect
+        """
+
+        quote_data_df = pd.DataFrame(columns=[u'CountryCode', u'Quantity', u'ComListPrice', u'ComTMC', u'ComQuotePrice', u'ComDelgPriceL4', u'WinLoss', u'ComRevCat', u'ComRevDivCd', u'ComBrand', u'ComGroup', u'ComFamily', u'ComMT', u'ComMTM', u'ComLogListPrice', u'UpgMES', u'ComQuotePricePofL', u'ComDelgPriceL4PofL', u'ComCostPofL', u'ComLowPofL', u'ComMedPofL', u'ComHighPofL', u'ComMedPrice', u'DealSize', u'LogDealSize', u'ComPctContrib', u'Componentid', u'concat', u'TreeNode', u'ComTMCPofL', u'AdjComLowPofL', u'AdjComMedPofL', u'AdjComHighPofL', u'AdjComLowPrice', u'AdjComMedPrice', u'AdjComHighPrice', u'OptimalPricePofL', u'OptimalPrice', u'OptimalPriceWinProb',u'OptimalPriceGP', u'OptimalPriceExpectedGP', u'OptimalPriceIntervalLow', u'OptimalPriceIntervalHigh', u'DealBotLineSpreadOptimalPrice', u'QuotePricePofL', u'QuotedPrice', u'QuotePriceWinProb', u'QuotePriceGP', u'QuotePriceExpectedGP', u'PredictedQuotePricePofL', u'PredictedQuotePrice', u'COPComLowPrice', u'COPComMedPrice', u'COPComHighPrice', u'COPComLowPofL', 'COPComMedPofL', u'COPComHighPofL', u'COPOptimalPrice', u'COPOptimalPricePofL', u'COPOptimalPriceWinProb', u'COPOptimalPriceGP', u'COPOptimalPriceExpectedGP', u'COPOptimalPriceIntervalLow', u'COPOptimalPriceIntervalHigh', u'COPQuotePriceWinProb', u'COPQuotePriceGP', u'COPQuotePriceExpectedGP', u'QuotePrice'],
+                             data = [['DE', 2, 67089.31202, 25091.87277, 3895.10412, 0, 1, 'H', '9R', 'OTHER POWER', 'POWER SYSTEM', 'POWER LINUX', '8248a', '8247-22La', 4.826653338, 0, 0.05805849, 0, 0.374007007, 0.77, 0.7700149055038708, 0.7700298110077415, 51659.7702554, 22254.07, 4.34740945, 0.660628381, 1, '4145484-DEDEO724-322769267089.312 0225091.872773895.104120.01HXYZOTHERPOWERPOWERSYSTEMPOWERLINUX8247a8247-22La201770B04.82665333834000.05805848953760.00.374007006698CHW_DEEPRICER210', -999,0.3740070066975774, 0.77, 0.7700149055038708, 0.7700298110077415, 51658.7702554, 51659.7702554, 51660.7702554, 0.7700149055038708, 51659.7702554, 0.5, 26567.897485399997, 13283.948742699999, 51659.7702554, 51659.7702554, 51659.7702554, 0.05805849, 3895.10412, 0.5, -21196.76865, -10598.384325, 0.05805848953763053, 3895.10412, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3895.10412]])
+
+        quote_data_df1 = pd.DataFrame(columns=[u'CountryCode', u'Quantity', u'ComListPrice', u'ComTMC', u'ComQuotePrice', u'ComDelgPriceL4', u'WinLoss', u'ComRevCat', u'ComRevDivCd', u'ComBrand', u'ComGroup', u'ComFamily', u'ComMT', u'ComMTM', u'ComLogListPrice', u'UpgMES', u'ComQuotePricePofL', u'ComDelgPriceL4PofL', u'ComCostPofL', u'ComLowPofL', u'ComMedPofL', u'ComHighPofL', u'ComMedPrice', u'DealSize', u'LogDealSize', u'ComPctContrib', u'Componentid', u'concat', u'TreeNode', u'ComTMCPofL', u'AdjComLowPofL', u'AdjComMedPofL', u'AdjComHighPofL', u'AdjComLowPrice', u'AdjComMedPrice', u'AdjComHighPrice', u'OptimalPricePofL', u'OptimalPrice', u'OptimalPriceWinProb',u'OptimalPriceGP', u'OptimalPriceExpectedGP', u'OptimalPriceIntervalLow', u'OptimalPriceIntervalHigh', u'DealBotLineSpreadOptimalPrice', u'QuotePricePofL', u'QuotedPrice', u'QuotePriceWinProb', u'QuotePriceGP', u'QuotePriceExpectedGP', u'PredictedQuotePricePofL', u'PredictedQuotePrice', u'COPComLowPrice', u'COPComMedPrice', u'COPComHighPrice', u'COPComLowPofL', 'COPComMedPofL', u'COPComHighPofL', u'COPOptimalPrice', u'COPOptimalPricePofL', u'COPOptimalPriceWinProb', u'COPOptimalPriceGP', u'COPOptimalPriceExpectedGP', u'COPOptimalPriceIntervalLow', u'COPOptimalPriceIntervalHigh', u'COPQuotePriceWinProb', u'COPQuotePriceGP', u'COPQuotePriceExpectedGP', u'QuotePrice'],
+                             data=[['DE', 2, 67089.31202, 25091.87277, 3895.10412, 0, 1, 'H', '9R', 'OTHER POWER', 'POWER SYSTEM', 'POWER LINUX', '8248a', '8248-22La', 4.826653338, 0, 0.05805849, 0, 0.374007007, 0.77, 0.7700149055038708, 0.7700298110077415, 51659.7702554, 22254.07, 4.34740945, 0.660628381, 1, '4145484-DEDEO724-322769267089.312 0225091.872773895.104120.01HXYZOTHERPOWERPOWERSYSTEMPOWERLINUX8247a8247-22La201770B04.82665333834000.05805848953760.00.374007006698CHW_DEEPRICER210', -999,0.3740070066975774, 0.77, 0.7700149055038708, 0.7700298110077415, 51658.7702554, 51659.7702554, 51660.7702554, 0.7700149055038708, 51659.7702554, 0.5, 26567.897485399997, 13283.948742699999, 51659.7702554, 51659.7702554, 51659.7702554, 0.05805849, 3895.10412, 0.5, -21196.76865, -10598.384325, 0.05805848953763053, 3895.10412, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3895.10412]])
+
+        price_point_data = pd.DataFrame(columns=['Price', 'PricePointId', 'PricePointName'], data=[[45, 45, 'Original Quoted Price']])
+
+        expected_quote_df = pd.DataFrame(columns=[ u'CountryCode', u'Quantity', u'ComListPrice', u'ComTMC', u'ComQuotePrice', u'ComDelgPriceL4', u'WinLoss', u'ComRevCat', u'ComRevDivCd', u'ComBrand', u'ComGroup', u'ComFamily', u'ComMT', u'ComMTM', u'ComLogListPrice', u'UpgMES', u'ComQuotePricePofL', u'ComDelgPriceL4PofL', u'ComCostPofL', u'ComLowPofL', u'ComMedPofL', u'ComHighPofL', u'ComMedPrice', u'DealSize', u'LogDealSize', u'ComPctContrib', u'Componentid', u'concat', u'TreeNode', u'ComTMCPofL', u'AdjComLowPofL', u'AdjComMedPofL', u'AdjComHighPofL', u'AdjComLowPrice', u'AdjComMedPrice', u'AdjComHighPrice', u'OptimalPricePofL', u'OptimalPrice', u'OptimalPriceWinProb', u'OptimalPriceGP', u'OptimalPriceExpectedGP', u'OptimalPriceIntervalLow', u'OptimalPriceIntervalHigh', u'DealBotLineSpreadOptimalPrice', u'QuotePricePofL', u'QuotedPrice', u'QuotePriceWinProb', u'QuotePriceGP', u'QuotePriceExpectedGP', u'PredictedQuotePricePofL', u'PredictedQuotePrice', u'COPComLowPrice', u'COPComMedPrice', u'COPComHighPrice', u'COPComLowPofL', u'COPComMedPofL', u'COPComHighPofL', u'COPOptimalPrice', u'COPOptimalPricePofL', u'COPOptimalPriceWinProb', u'COPOptimalPriceGP', u'COPOptimalPriceExpectedGP', u'COPOptimalPriceIntervalLow', u'COPOptimalPriceIntervalHigh', u'COPQuotePriceWinProb', u'COPQuotePriceGP', u'COPQuotePriceExpectedGP', u'QuotedPrice'],
+                    data=[['DE', 2, 67089.31202, 25091.87277, 3895.10412, 0, 1, 'H', '9R', 'OTHER POWER', 'POWER SYSTEM', 'POWER LINUX', '8248a', '8247-22La', 4.826653338, 0, 0.05805849, 0, 0.374007007, 0.77, 0.7700149055038708, 0.7700298110077415, 51659.7702554, 22254.07, 4.34740945, 0.660628381, 1, '4145484-DEDEO724-322769267089.312 0225091.872773895.104120.01HXYZOTHERPOWERPOWERSYSTEMPOWERLINUX8247a8247-22La201770B04.82665333834000.05805848953760.00.374007006698CHW_DEEPRICER210', -999, 0.3740070066975774, 0.77, 0.7700149055038708, 0.7700298110077415, 51658.7702554, 51659.7702554, 51660.7702554, 0.7700149055038708, 51659.7702554, 0.5, 26567.897485399997, 13283.948742699999, 51659.7702554, 51659.7702554, 51659.7702554, 0.05805849, 3895.10412, 0.5, -21196.76865, -10598.384325, 0.05805848953763053, 3895.10412, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3895.10412], ['DE', 2, 67089.31202, 25091.87277, 3895.10412, 0, 1, 'H', '9R', 'OTHER POWER', 'POWER SYSTEM', 'POWER LINUX', '8248a', '8248-22La', 4.826653338, 0, 0.05805849, 0, 0.374007007, 0.77, 0.7700149055038708, 0.7700298110077415, 51659.7702554, 22254.07, 4.34740945, 0.660628381, 1, '4145484-DEDEO724-322769267089.312 0225091.872773895.104120.01HXYZOTHERPOWERPOWERSYSTEMPOWERLINUX8247a8247-22La201770B04.82665333834000.05805848953760.00.374007006698CHW_DEEPRICER210', -999, 0.3740070066975774, 0.77, 0.7700149055038708, 0.7700298110077415, 51658.7702554, 51659.7702554, 51660.7702554, 0.7700149055038708, 51659.7702554, 0.5, 26567.897485399997, 13283.948742699999, 51659.7702554, 51659.7702554, 51659.7702554, 0.05805849, 3895.10412, 0.5, -21196.76865, -10598.384325, 0.05805848953763053, 3895.10412, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', 3895.10412]])
+
+        expected_total_deal = pd.Series(index=[u'  General Total Quote Data', u'DealListPrice', u'DealSize', u'DealTMC', u'DealPredictedQuotePrice', u'  Price Range Data (Line Item Sum)', u'DealAdjLowPrice', u'DealAdjMedPrice', u'DealAdjHighPrice', u'  Quoted Price Data (Line Item Sum)', u'DealQuotePrice', u'DealQuotePriceWinProb', u'DealQuotePriceGP', u'DealQuotePriceExpectedGP', u'  Optimal Price Data (Line Item Sum)', u'DealOptimalPrice', u'DealOptimalPriceWinProb', u'DealOptimalPriceGP', u'DealOptimalPriceExpectedGP', u'DealOptimalPriceIntervalLow', u'DealOptimalPriceIntervalHigh', u'  Quoted Price Data (Bottom-Line)', u'DealBotLineQuotePrice', u'DealBotLineQuotePriceWinProb', u'DealBotLineQuotePriceGP', u'DealBotLineQuotePriceExpectedGP',  u'  Optimal Price Data (Bottom-Line)', u'DealBotLineOptimalPrice', u'DealBotLineOptimalPriceWinProb', u'DealBotLineOptimalPriceGP', u'DealBotLineOptimalPriceExpectedGP', u'DealBotLineOptimalPriceIntervalLow', u'DealBotLineOptimalPriceIntervalHigh'],
+                           data = ['', 134178.62404, 103319.5405108, 50183.74554, 7790.20824, '',103317.5405108, 103319.5405108, 103321.5405108, '', 7790.20824, 0.5, -42393.5373, -21196.76865, '', 103319.5405108, 0.5,53135.794970799994, 26567.897485399997, 103319.5405108,103319.5405108, '', 7790.20824, 1.0, -42393.5373, -42393.5373, '',103316.54051848, 0.9931926836981532, 53132.79497848,52771.103237060306, 102283.3751132952, 104349.7059236648])
+
+        expected_price_point = pd.DataFrame(columns=[u'Price', u'PricePointId', u'PricePointName', u'WinProbPercent'], data=[[45.0, 45, 'Original Quoted Price', 1.0]])
+
+        quote, total_deal, price_point = Reporter().report(price_point_data, quote_data_df, quote_data_df1)
+        """
+        reindex columns to ensure that columns are sorted and comparison
+        doesn't result in failure
+        """
+
+        assert_frame_equal(
+            price_point_data.reindex_axis(sorted(price_point_data.columns), axis=1),
+            price_point.reindex_axis(sorted(price_point_data.columns), axis=1))
+
+        assert_series_equal(expected_total_deal, total_deal)
+
+        assert_equal(pd.DataFrame.equals(quote, expected_quote_df), True)
