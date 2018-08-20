@@ -1,0 +1,47 @@
+Condition,MinCondition,MaxCondition,Comment
+"df.loc[df.ComMT.isin(['6661a', '6662a', '6663a', '6664a'])]",item['min_price']=item['ComListPrice']*0.8,,set lower bound to 20% discount
+"df.loc[(df.ComMT == '6911a') & (df['Indirect(1/0)'] == 0) & (df.Countrycode.isin(geomap.loc[(geomap.Geo == 'NA'), 'Countrycode']))]",item['min_price']=item['ComListPrice']*0.8,,set lower bound to 20% discount
+df.loc[df.ComMTM == '5639-RH7a'],item['min_price']=item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-12Sa'],item['min_price']=item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-RLEa'],item['min_price']=item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-S11a'],item['min_price']=item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-SAPa'],item['min_price']=item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5639-U16a'],item['min_price']=item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-XRLa'],item['min_price']=item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5771-KVMa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5771-LNXa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5773-KVMa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5773-LNXa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMT == '7063a'],item['min_price'] =item['ComTMC']/0.9,,set lower bound to 10% TMC GP
+df.loc[df.ComMTM == '5771-CEBa'],item['min_price'] =item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5773-CEBa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5771-CECa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5773-CECa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-RHSa'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMT == '8001a'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.7;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 30% TMC GP
+df.loc[df.ComMTM == '8335-GTGa'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.71;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 29% TMC GP
+df.loc[df.ComMTM == '5639-CE1a'],item['min_price']=item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-CE2a'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-CE3a'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-CE4a'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5639-N3Ua'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5639-N5Ua'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5639-NP3a'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5639-NP5a'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5639-NTSa'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5639-NUPa'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5639-VE1a'],item['min_price'] = item['ComListPrice']*0.82,,set lower bound to 18% discount
+df.loc[df.ComMTM == '5773-N3Ua'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5773-NP3a'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5775-N5Ua'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMTM == '5775-NP5a'],item['min_price'] = item['ComListPrice']*0.57,,set lower bound to 43% discount
+df.loc[df.ComMT == '8005a'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.7;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 30% TMC GP
+df.loc[df.ComMT == '9008a'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.7;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 30% TMC GP
+df.loc[df.ComMT == '9009a'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.49;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 51% TMC GP
+df.loc[df.ComMT == '9223a'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.63;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 37% TMC GP
+df.loc[df.ComMTM == '8335-GTHa'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.71;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 29% TMC GP
+df.loc[df.ComMTM == '8335-GTXa'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.71;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 29% TMC GP
+df.loc[df.ComMTM == '9006-12Pa'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.7;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 30% TMC GP
+df.loc[df.ComMTM == '9006-22Pa'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.7;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 30% TMC GP
+df.loc[df.ComMTM == '9080-M9Sa'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.45;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 55% TMC GP
+df.loc[df.ComMT == '9040a'],"item['ComListPrice_dum'] =item['ComListPrice'] * (1-0.2);item['ComTMC_dum'] = item['ComTMC'] / 0.45;item['min_price'] = item[['ComListPrice_dum', 'ComTMC_dum']].max(axis=1)",,set lower bound to higer price of 20% discount and 55% TMC GP

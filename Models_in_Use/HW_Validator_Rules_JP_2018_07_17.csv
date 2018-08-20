@@ -1,0 +1,5 @@
+Condition,MinCondition,MaxCondition
+df.loc[df.ComMTM == '5771-LNXa'],item['ComListPrice']*(1-0),item['ComListPrice']*(1-0)
+df.loc[df.ComMTM == '5733-SX1a'],item['ComListPrice']*(1-0.2),item['ComListPrice']*(1-0.2)
+df.loc[df.ComMTM == '5773-NTSa'],item['ComListPrice']*(1-0.2),item['ComListPrice']*(1-0.2)
+df.loc[df.ComMTM == '5775-NTSa'],item['ComListPrice']*(1-0.2),item['ComListPrice']*(1-0.2)

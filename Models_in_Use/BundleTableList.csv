@@ -1,0 +1,297 @@
+ComMTM,ComRevCat,Bundle,Group,SubGroup
+3401,HW,B1,Cloud Object Storage,1/2 yr
+5641-CO1,SW,B1,Cloud Object Storage,1/2 yr
+5641-CO2,SW,B1,Cloud Object Storage,1/2 yr
+3403,HW,B1,Cloud Object Storage,3/4/5 yr
+5641-CO3,SW,B1,Cloud Object Storage,3/4/5 yr
+5641-CO4,SW,B1,Cloud Object Storage,3/4/5 yr
+5641-CO5,SW,B1,Cloud Object Storage,3/4/5 yr
+2421,HW,B2,DS8000,1 yr
+2396,HW,B2,DS8000,1 yr
+2422,HW,B2,DS8000,2 yr
+2397,HW,B2,DS8000,2 yr
+2423,HW,B2,DS8000,3 yr
+2398,HW,B2,DS8000,3 yr
+2424,HW,B2,DS8000,4 yr
+2399,HW,B2,DS8000,4 yr
+2831,HW,B3,DS888x,1 yr
+2836,HW,B3,DS888x,1 yr
+5331,HW,B3,DS888x,1 yr
+9046,HW,B3,DS888x,1 yr
+5639-DS1,SW,B3,DS888x,1 yr
+2832,HW,B3,DS888x,2 yr
+2837,HW,B3,DS888x,2 yr
+5332,HW,B3,DS888x,2 yr
+9047,HW,B3,DS888x,2 yr
+5639-DS2,SW,B3,DS888x,2 yr
+2833,HW,B3,DS888x,3 yr
+2838,HW,B3,DS888x,3 yr
+5333,HW,B3,DS888x,3 yr
+9048,HW,B3,DS888x,3 yr
+5639-DS3,SW,B3,DS888x,3 yr
+2834,HW,B3,DS888x,4 yr
+2839,HW,B3,DS888x,4 yr
+5334,HW,B3,DS888x,4 yr
+9049,HW,B3,DS888x,4 yr
+5639-DS4,SW,B3,DS888x,4 yr
+5147,HW,B4,Elastic Storage,none
+5641-GN3,SW,B4,Elastic Storage,none
+5641-GN5,SW,B4,Elastic Storage,none
+5641-GPF,SW,B4,Elastic Storage,none
+5641-GRS,SW,B4,Elastic Storage,none
+5641-GS1,SW,B4,Elastic Storage,none
+5641-GS3,SW,B4,Elastic Storage,none
+5641-GS5,SW,B4,Elastic Storage,none
+5660-ESS,SW,B4,Elastic Storage,none
+5660-SGP,SW,B4,Elastic Storage,none
+5660-XA3,SW,B4,Elastic Storage,none
+5661-ESS,SW,B4,Elastic Storage,none
+5661-SGP,SW,B4,Elastic Storage,none
+5661-XA3,SW,B4,Elastic Storage,none
+5662-ESS,SW,B4,Elastic Storage,none
+5662-SGP,SW,B4,Elastic Storage,none
+5662-XA3,SW,B4,Elastic Storage,none
+5663-ESS,SW,B4,Elastic Storage,none
+5663-XA3,SW,B4,Elastic Storage,none
+5664-ESS,SW,B4,Elastic Storage,none
+5664-SGP,SW,B4,Elastic Storage,none
+5664-XA3,SW,B4,Elastic Storage,none
+5665-ESS,SW,B4,Elastic Storage,none
+5765-ESS,SW,B4,Elastic Storage,none
+5765-G66,SW,B4,Elastic Storage,none
+5765-XA3,SW,B4,Elastic Storage,none
+9835,HW,B5,Flash A9000,none
+9836,HW,B5,Flash A9000,none
+9837,HW,B5,Flash A9000,none
+9838,HW,B5,Flash A9000,none
+5639-FS1,SW,B5,Flash A9000,none
+5639-FS2,SW,B5,Flash A9000,none
+5639-FSL,SW,B5,Flash A9000,none
+5639-FSP,SW,B5,Flash A9000,none
+5639-FSQ,SW,B5,Flash A9000,none
+5639-FSR,SW,B5,Flash A9000,none
+5639-FSU,SW,B5,Flash A9000,none
+5639-FSX,SW,B5,Flash A9000,none
+5639-FSY,SW,B5,Flash A9000,none
+5639-FSZ,SW,B5,Flash A9000,none
+9846,HW,B6,Flash V9000,none
+9848,HW,B6,Flash V9000,none
+5639-RB7,SW,B6,Flash V9000,none
+5639-RB8,SW,B6,Flash V9000,none
+5639-RBC,SW,B6,Flash V9000,none
+5639-RBF,SW,B6,Flash V9000,none
+5639-RBG,SW,B6,Flash V9000,none
+5639-RBH,SW,B6,Flash V9000,none
+5639-HAA,SW,B7,LTFS SW,none
+5639-HAB,SW,B7,LTFS SW,none
+5639-HAC,SW,B7,LTFS SW,none
+5639-HAD,SW,B7,LTFS SW,none
+5639-HAE,SW,B7,LTFS SW,none
+5639-HAF,SW,B7,LTFS SW,none
+5639-HAG,SW,B7,LTFS SW,none
+5639-HAH,SW,B7,LTFS SW,none
+5639-HAI,SW,B7,LTFS SW,none
+5639-LP1,SW,B7,LTFS SW,none
+5639-LP2,SW,B7,LTFS SW,none
+5639-LP3,SW,B7,LTFS SW,none
+5639-LP4,SW,B7,LTFS SW,none
+5639-LP5,SW,B7,LTFS SW,none
+5639-LP6,SW,B7,LTFS SW,none
+5639-LP7,SW,B7,LTFS SW,none
+5639-LP8,SW,B7,LTFS SW,none
+5639-LP9,SW,B7,LTFS SW,none
+5639-LT1,SW,B7,LTFS SW,none
+5639-LT2,SW,B7,LTFS SW,none
+5639-LT3,SW,B7,LTFS SW,none
+5639-LT4,SW,B7,LTFS SW,none
+5639-LT5,SW,B7,LTFS SW,none
+5639-LT6,SW,B7,LTFS SW,none
+5639-LT7,SW,B7,LTFS SW,none
+5639-LT8,SW,B7,LTFS SW,none
+5639-LT9,SW,B7,LTFS SW,none
+5639-TL1,SW,B7,LTFS SW,none
+5639-TL2,SW,B7,LTFS SW,none
+5639-TL3,SW,B7,LTFS SW,none
+5639-TL4,SW,B7,LTFS SW,none
+5639-TL5,SW,B7,LTFS SW,none
+5639-TL6,SW,B7,LTFS SW,none
+5639-TL7,SW,B7,LTFS SW,none
+5639-TL8,SW,B7,LTFS SW,none
+5639-TL9,SW,B7,LTFS SW,none
+3958,HW,B8,Protectier,none
+3959,HW,B8,Protectier,none
+5639-FPA,SW,B8,Protectier,none
+5639-FPB,SW,B8,Protectier,none
+5639-FPC,SW,B8,Protectier,none
+5639-FPD,SW,B8,Protectier,none
+5639-FPE,SW,B8,Protectier,none
+5639-FPF,SW,B8,Protectier,none
+5639-FPG,SW,B8,Protectier,none
+5639-FPH,SW,B8,Protectier,none
+5639-FPI,SW,B8,Protectier,none
+5639-PTA,SW,B8,Protectier,none
+5639-PTB,SW,B8,Protectier,none
+5639-PTC,SW,B8,Protectier,none
+5639-TAA,SW,B8,Protectier,none
+5639-TAB,SW,B8,Protectier,none
+5639-TAC,SW,B8,Protectier,none
+5639-TAD,SW,B8,Protectier,none
+5639-TAE,SW,B8,Protectier,none
+5639-TAF,SW,B8,Protectier,none
+5639-TAG,SW,B8,Protectier,none
+5639-TAH,SW,B8,Protectier,none
+5639-TAI,SW,B8,Protectier,none
+5639-XXB,SW,B8,Protectier,none
+5639-XXC,SW,B8,Protectier,none
+5639-XXD,SW,B8,Protectier,none
+5639-XXE,SW,B8,Protectier,none
+5639-XXF,SW,B8,Protectier,none
+5639-XXG,SW,B8,Protectier,none
+5639-XXJ,SW,B8,Protectier,none
+5639-XXK,SW,B8,Protectier,none
+5639-XXL,SW,B8,Protectier,none
+5639-XXP,SW,B8,Protectier,none
+5639-XXQ,SW,B8,Protectier,none
+5639-XXR,SW,B8,Protectier,none
+5639-XXS,SW,B8,Protectier,none
+5639-XXT,SW,B8,Protectier,none
+5639-XXU,SW,B8,Protectier,none
+5639-XXV,SW,B8,Protectier,none
+5639-XXW,SW,B8,Protectier,none
+5639-XXX,SW,B8,Protectier,none
+2452,HW,B9,Real-time Compression,none
+5639-RC1,SW,B9,Real-time Compression,none
+5639-RC2,SW,B9,Real-time Compression,none
+5639-RC3,SW,B9,Real-time Compression,none
+5639-RC4,SW,B9,Real-time Compression,none
+5639-RC5,SW,B9,Real-time Compression,none
+5639-RC6,SW,B9,Real-time Compression,none
+5639-RCA,SW,B9,Real-time Compression,none
+5641-RT1,SW,B9,Real-time Compression,none
+5641-RT2,SW,B9,Real-time Compression,none
+5641-RT3,SW,B9,Real-time Compression,none
+5641-RT4,SW,B9,Real-time Compression,none
+5641-RT5,SW,B9,Real-time Compression,none
+5641-RT6,SW,B9,Real-time Compression,none
+5641-RT7,SW,B9,Real-time Compression,none
+5641-RT8,SW,B9,Real-time Compression,none
+5641-RT9,SW,B9,Real-time Compression,none
+5641-RTA,SW,B9,Real-time Compression,none
+5641-RTB,SW,B9,Real-time Compression,none
+5641-RTC,SW,B9,Real-time Compression,none
+5639-NA1,SW,B10,SAN Network Advisor SW,none
+5639-NA2,SW,B10,SAN Network Advisor SW,none
+5639-NA3,SW,B10,SAN Network Advisor SW,none
+5639-NA4,SW,B10,SAN Network Advisor SW,none
+5639-NA5,SW,B10,SAN Network Advisor SW,none
+5639-NA6,SW,B10,SAN Network Advisor SW,none
+5639-NAT,SW,B10,SAN Network Advisor SW,none
+5639-NAU,SW,B10,SAN Network Advisor SW,none
+2851,HW,B11,SoNAS,none
+5639-NN1,SW,B11,SoNAS,none
+5639-NN2,SW,B11,SoNAS,none
+5639-NN3,SW,B11,SoNAS,none
+5639-NN4,SW,B11,SoNAS,none
+5639-NN5,SW,B11,SoNAS,none
+5639-NN6,SW,B11,SoNAS,none
+5639-NN7,SW,B11,SoNAS,none
+5639-SN1,SW,B11,SoNAS,none
+2145,HW,B12,SVC/Smartcloud,none
+2147,HW,B12,SVC/Smartcloud,none
+5608-AE1,SW,B12,SVC/Smartcloud,none
+5608-AE2,SW,B12,SVC/Smartcloud,none
+5608-AE3,SW,B12,SVC/Smartcloud,none
+5608-AE4,SW,B12,SVC/Smartcloud,none
+5608-AE5,SW,B12,SVC/Smartcloud,none
+5608-AE6,SW,B12,SVC/Smartcloud,none
+5608-AP1,SW,B12,SVC/Smartcloud,none
+5608-AP2,SW,B12,SVC/Smartcloud,none
+5608-AP3,SW,B12,SVC/Smartcloud,none
+5608-AP4,SW,B12,SVC/Smartcloud,none
+5608-AP5,SW,B12,SVC/Smartcloud,none
+5608-AP6,SW,B12,SVC/Smartcloud,none
+5639-SSC,SW,B12,SVC/Smartcloud,none
+5639-SSF,SW,B12,SVC/Smartcloud,none
+5639-SSG,SW,B12,SVC/Smartcloud,none
+5639-SSH,SW,B12,SVC/Smartcloud,none
+5639-VC6,SW,B12,SVC/Smartcloud,none
+5641-B01,SW,B12,SVC/Smartcloud,none
+5641-B02,SW,B12,SVC/Smartcloud,none
+5641-B03,SW,B12,SVC/Smartcloud,none
+5641-B04,SW,B12,SVC/Smartcloud,none
+5641-B05,SW,B12,SVC/Smartcloud,none
+5641-B06,SW,B12,SVC/Smartcloud,none
+5641-B08,SW,B12,SVC/Smartcloud,none
+5641-CP1,SW,B12,SVC/Smartcloud,none
+5641-CP7,SW,B12,SVC/Smartcloud,none
+5641-CP8,SW,B12,SVC/Smartcloud,none
+5641-CS1,SW,B12,SVC/Smartcloud,none
+5641-CS2,SW,B12,SVC/Smartcloud,none
+5641-CS3,SW,B12,SVC/Smartcloud,none
+5641-CS4,SW,B12,SVC/Smartcloud,none
+5641-CS5,SW,B12,SVC/Smartcloud,none
+5641-VC7,SW,B12,SVC/Smartcloud,none
+5641-VC8,SW,B12,SVC/Smartcloud,none
+5641-VCA,SW,B12,SVC/Smartcloud,none
+5641-VCB,SW,B12,SVC/Smartcloud,none
+5641-VCC,SW,B12,SVC/Smartcloud,none
+5641-VCD,SW,B12,SVC/Smartcloud,none
+5641-VCE,SW,B12,SVC/Smartcloud,none
+2077,HW,B13,V5000,none
+2078,HW,B13,V5000,none
+5639-CT7,SW,B13,V5000,none
+5639-CTC,SW,B13,V5000,none
+5639-ET7,SW,B13,V5000,none
+5639-ETC,SW,B13,V5000,none
+5639-SSL,SW,B13,V5000,none
+5639-SSN,SW,B13,V5000,none
+5639-SSQ,SW,B13,V5000,none
+5639-SSR,SW,B13,V5000,none
+5639-SV1,SW,B13,V5000,none
+5639-SV2,SW,B13,V5000,none
+5639-SV3,SW,B13,V5000,none
+5639-SV4,SW,B13,V5000,none
+5639-SV5,SW,B13,V5000,none
+5639-SV6,SW,B13,V5000,none
+5639-SV7,SW,B13,V5000,none
+5639-SV8,SW,B13,V5000,none
+5639-SVC,SW,B13,V5000,none
+5639-SVG,SW,B13,V5000,none
+5639-SVH,SW,B13,V5000,none
+5639-SVL,SW,B13,V5000,none
+5639-SVR,SW,B13,V5000,none
+5639-SVU,SW,B13,V5000,none
+5639-SVW,SW,B13,V5000,none
+5639-SVY,SW,B13,V5000,none
+5639-SVZ,SW,B13,V5000,none
+5639-XT7,SW,B13,V5000,none
+5639-XTC,SW,B13,V5000,none
+2076,HW,B14,V7000,none
+5639-CB7,SW,B14,V7000,none
+5639-CB8,SW,B14,V7000,none
+5639-CBC,SW,B14,V7000,none
+5639-CBG,SW,B14,V7000,none
+5639-CBH,SW,B14,V7000,none
+5639-EB7,SW,B14,V7000,none
+5639-EBC,SW,B14,V7000,none
+5639-EV7,SW,B14,V7000,none
+5639-EVD,SW,B14,V7000,none
+5639-EVG,SW,B14,V7000,none
+5639-EVH,SW,B14,V7000,none
+5639-RM7,SW,B14,V7000,none
+5639-RMD,SW,B14,V7000,none
+5639-SM3,SW,B14,V7000,none
+5639-VM7,SW,B14,V7000,none
+5639-XB7,SW,B14,V7000,none
+5639-XB8,SW,B14,V7000,none
+5639-XBC,SW,B14,V7000,none
+5639-XBG,SW,B14,V7000,none
+5639-XBH,SW,B14,V7000,none
+2810,HW,B15,XIV,none
+2812,HW,B15,XIV,none
+5639-XX3,SW,B15,XIV,none
+5639-YG3,SW,B15,XIV,none
+5639-YYB,SW,B15,XIV,none
+5639-YYG,SW,B15,XIV,none
+5641-AC3,SW,B15,XIV,none
+5641-AC5,SW,B15,XIV,none
