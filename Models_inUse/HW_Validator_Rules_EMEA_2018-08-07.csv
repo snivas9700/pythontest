@@ -1,0 +1,58 @@
+Condition,MinCondition,MaxCondition,Comments
+"df.loc[df.ComMT.isin(['6661a', '6662a', '6663a', '6664a'])]",item['min_price']=item['ComListPrice']*0.77,item['ComListPrice']*0.77,Discount 23%
+df.loc[df.ComMTM == '5639-RHSa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '8001-HPCa'],item['min_price']=item['ComTMC']/1,item['ComTMC']/1,TMC GP 0%
+"df.loc[(df.ComMT == '6911a') & (df['Indirect(1/0)'] == 0) & (df.Countrycode.isin(geomap.loc[(geomap.Geo == 'EMEA') & (geomap.SubReg == 'MEA'), 'Countrycode']))]",item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25% in MEA
+"df.loc[(df.ComMT == '6911a') & (df['Indirect(1/0)'] == 1) & (df.Countrycode.isin(geomap.loc[(geomap.Geo == 'EMEA') & (geomap.SubReg == 'MEA'), 'Countrycode']))]",item['min_price']=item['ComListPrice']*0.64,item['ComListPrice']*0.64,Discount 36% in MEA 
+"df.loc[(df.ComMT == '6911a') & (df['Indirect(1/0)'] == 0) & (df.Countrycode.isin(geomap.loc[(geomap.Geo == 'EMEA') & (geomap.SubReg != 'MEA'), 'Countrycode']))]",item['min_price']=item['ComListPrice']*0.70,item['ComListPrice']*0.70,Discount 30% in all Europe
+"df.loc[(df.ComMT == '6911a') & (df['Indirect(1/0)'] == 1) & (df.Countrycode.isin(geomap.loc[(geomap.Geo == 'EMEA') & (geomap.SubReg != 'MEA'), 'Countrycode']))]",item['min_price']=item['ComListPrice']*0.56,item['ComListPrice']*0.56,Discount 44% in all Europe
+df.loc[df.ComMTM == '5639-CE1a'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-CE2a'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-CE3a'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-CE4a'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-NP3a'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-NP5a'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-N3Ua'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-N5Ua'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-NUPa'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-NTSa'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-RH7a'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-12Sa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-RLEa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-SAPa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-U16a'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-XRLa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5771-LNXa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5773-LNXa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5771-CEBa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5773-CEBa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5771-CECa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5773-CECa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5773-NP3a'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5773-N3Ua'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5775-NP5a'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5775-N5Ua'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5771-PAIa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5773-PAIa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5765-DRGa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5771-DRGa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5773-DRGa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5771-DRLa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5775-LNXa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5799-OSPa'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-U18a'],item['min_price']=item['ComListPrice']*0.54,item['ComListPrice']*0.54,Discount 46%
+df.loc[df.ComMTM == '5639-1PPa'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-2PPa'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-3PPa'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-4PPa'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5639-5PPa'],item['min_price']=item['ComListPrice']*0.44,item['ComListPrice']*0.44,Discount 56%
+df.loc[df.ComMTM == '5765-AIEa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5771-AIEa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5773-AIEa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5771-AIAa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5765-TAIa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5771-TAIa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5773-TAIa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '5771-TAAa'],item['min_price']=item['ComListPrice']*0.75,item['ComListPrice']*0.75,Discount 25%
+df.loc[df.ComMTM == '9040-MR9a'],item['min_price']=item['ComTMC']/0.45,item['ComTMC']/0.45,TMC GP 55%
+df.loc[df.ComMTM == '9080-M9Sa'],item['min_price']=item['ComTMC']/0.45,item['ComTMC']/0.45,TMC GP 55%

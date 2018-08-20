@@ -1,0 +1,47 @@
+Condition,MinCondition,MaxCondition
+"df.loc[df.ComMT.isin(['6661a', '6662a', '6663a', '6664a'])]",,item['ComListPrice']* 0.3
+"df.loc[df.ComMT.isin(['7014a', '7042a', '7316a', '7063a', '7965a'])]",item['ComTMC']*0.8,
+df.loc[df.ComMT == '9009a'],item['ComListPrice']*0.70,item['ComListPrice']* 0.75
+df.loc[df.ComMTM == '5639-RH7a'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMT == '9006a'],item['ComTMC']*(1-0.1),
+"df.loc[df.ComMTM.isin(['8335-GTXa', '8335-GTHa', '8335-GTGa'])]",item['ComTMC']*(1-0.1),
+df.loc[df.ComMTM == '5639-RLEa'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-RHSa'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-XRLa'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5799-OSPa'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-12Sa'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-SAPa'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-U16a'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-U18a'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-NP3a'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-NP5a'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-N3Ua'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-N5Ua'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-NUPa'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5775-NP5a'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5775-N5Ua'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5773-N3Ua'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5773-NP3a'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-1PPa'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-2PPa'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-3PPa'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-4PPa'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-5PPa'],,item['ComListPrice']*(1-0.43)
+df.loc[df.ComMTM == '5639-CE1a'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-CE2a'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-CE3a'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5639-CE4a'],,item['ComListPrice']*(1-0.3)
+df.loc[df.ComMTM == '5765-AIEa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMTM == '5771-AIEa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMTM == '5773-AIEa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMTM == '5771-AIAa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMTM == '5765-TAIa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMTM == '5771-TAIa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMTM == '5773-TAIa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMTM == '5771-TAAa'],,item['ComListPrice']*(1-0.4)
+df.loc[df.ComMT == '9223a'],item['ComTMC']*(1-0),
+df.loc[df.ComMT == '8005a'],item['ComTMC']*(1-0.1),
+df.loc[df.ComMT == '9008a'],item['ComTMC']*(1-0.1),
+df.loc[df.ComMT == '8001a'],item['ComTMC']*(1-0.1),
+df.loc[df.ComMTM == '9009-42Aa'],item['ComTMC']*(1-0.2),
+"df.loc[df.ComMTM.isin(['9009-22Aa', '9009- 41Aa'])]",item['ComTMC']*(1-0.1),
