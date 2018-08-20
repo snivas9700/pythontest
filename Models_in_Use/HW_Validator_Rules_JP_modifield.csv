@@ -1,9 +1,0 @@
-Condition,MinCondition,MaxCondition,Discount,Comments
-"df.loc[df.ComMT.isin(['6661a', '6662a', '6663a', '6664a'])]",,item['ComListPrice']* 0.7,0.23,Discount 23%
-"df.loc[df.ComMT.isin(['7014a', '7042a', '7316a', '7063a', '7965a'])]",item['ComTMC']*0.2,,0.05,TMC GP 5%
-df.loc[df.ComMT == '9009a'],item['ComListPrice']* 0.25,item['ComListPrice']* 0.3,0.51,TMC GP 51%
-df.loc[df.ComMT == '9223a'],item['ComTMC']/0.1,,0.37,TMC GP 37%
-"df.loc[df.ComMT.isin(['8005a', '9008a'])]",,item['ComTMC']/0.2,0.3,TMC GP 30%
-df.loc[df.ComMTM == '5639-RH7a'],item['ComTMC']/0.19,item['ComTMC']/0.2,0.46,Discount 46%
-df.loc[df.ComMTM == '5639-SAPa'],item['ComTMC']/0.1,item['ComListPrice']*0.9,0.46,Discount 46%
-df.loc[df.ComMTM == '8335-GTGa'],item['ComListPrice']* 0.2,item['ComTMC']/0.8,0.29,TMC GP 29%
