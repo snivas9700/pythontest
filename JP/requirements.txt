@@ -1,3 +1,0 @@
-pandas==0.19.2
-statsmodels==0.8.0
-rpy2==2.8.6
