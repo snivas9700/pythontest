@@ -67,3 +67,15 @@ class GeoDispatcher:
             return True
         else:
             return False
+        
+    def is_EMEA_old(self, input_df):
+        """Test if quote (pandas.df) is direct.
+        :param df: quote
+        :retur True if direct quote, False otherwise.
+        """
+        if "TSSComponentincluded" not in input_df:
+            return True
+        else:
+            return False
+        
+             

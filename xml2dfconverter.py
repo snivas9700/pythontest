@@ -10,10 +10,15 @@ import numpy as np
 from copy import deepcopy
 
 tag_list = TAG_LIST
+#added "TSSComponentincluded" +++++++++++++++++++++++++++++++++++++++++++++
 tag_quote_list = TAG_QUOTE_LIST
+tag_quote_list_old = TAG_QUOTE_LIST_OLD
 tag_header_list = TAG_HEADER_LIST
 PricePoint_tag_list = PRICEPOINT_TAG_LIST
 CustomerInformation_tag_list = CUSTOMERINFORMATION_TAG_LIST
+#added TSS_COMPONENTS_TAG_LIST +++++++++++++++++++++++++++++++++++++++++++++
+Tss_components_tag_list = TSS_COMPONENTS_TAG_LIST
+
 '''
 output_columns = [
     'QuoteID', 'Countrycode', 'ChannelID', 'CustomerNumber', 'Quantity',
@@ -58,7 +63,7 @@ class XML2dfConverter:
                     0] = "Required data is missing for [" + tag + "] Tag"
                 info.append(0)
         return info
-
+    
     def getdata(self, node_find, node_list):
         # Get node data
         out_data = []
@@ -67,7 +72,7 @@ class XML2dfConverter:
             if com_info:
                 out_data.append(com_info)
         return out_data
-
+    
     def dataorganized(self, df_find, df_tag_list, out_data):
         # Organized the data and get component level information
         df_list = self.get_com_info(df_find, df_tag_list)
@@ -106,146 +111,229 @@ class XML2dfConverter:
             [45, 6, 7, 9, 12, 13, 14, 15, 16, 17, 18, 40, 41, 44, 46, 50, 53]
         }
         out_PricePoint_data = pd.DataFrame(data)
+        ComRevDivCd_orgi2 = pd.DataFrame()
         return final_output, out_PricePoint_data
 
     def xmltodf(self, quote_xml, geomap):
         # Convert xml to dataframe
         try:
             root = etree.fromstring(quote_xml)
-            #print ('INDIA++++++++++++++')
-            #print (root)
-            #input("test");
-
+            TSSComponentincluded = False
+            TssTagNotPresent = False
             RETURNCODE[0] = 0
             ERRORCODE[0] = ""
             ERRORDESCRIPTION[0] = ""
 
             QuoteInformation_find = root.find('QuoteInformation')
-            #print (QuoteInformation_find)
-            #print ('India')
-            #input("test");
+            
+            print(QuoteInformation_find)
+            
             RequestHeader_find = root.find('RequestHeader')
+                                    
             component_find = QuoteInformation_find.getiterator('Component')
-            #print ('Component+++++++')
-            #input("test");
+                        
             PricePoint_find = QuoteInformation_find.getiterator('PricePoint')
-            #print ('PricePoint')
-            #print ('test')
-            CustomerInformation_find = root.find('CustomerInformation')
-            #print ('Customer')
-            #input ("test");
 
+            CustomerInformation_find = root.find('CustomerInformation')
+            
+            if QuoteInformation_find.find('TSSComponentincluded') is None:
+                TssTagNotPresent = True
+            elif QuoteInformation_find.find('TSSComponentincluded').text == 'Y':
+                TSSComponentincluded = True
+            else:
+                TSSComponentincluded = False
+            
             out_data = self.getdata(component_find, tag_list)
             out_data = pd.DataFrame(out_data)
-            out_data.columns = tag_list
-            #print (out_data)
-            #input ("test");
-            #print ('India')
-
+            out_data.columns = tag_list  
+            """
+            if TSSComponentincluded:
+                out_data = out_data.copy()           
+                out_data = pd.DataFrame(out_data)            
+                del out_data['Level_1']
+                del out_data['Level_2']
+                del out_data['Level_3']
+                del out_data['Level_4']
+            """   
+            #out_data.to_csv('./output_results/out_data.csv')
+            
             out_PricePoint_data = self.getdata(PricePoint_find,
                                                PricePoint_tag_list)
             out_PricePoint_data = pd.DataFrame(out_PricePoint_data)
             out_PricePoint_data.columns = PricePoint_tag_list
-
-            QuoteInformation_list = self.dataorganized(
-                QuoteInformation_find, tag_quote_list, out_data)
-            #print (QuoteInformation_list)
-            #print ('India')
-            merge_output = pd.concat((QuoteInformation_list, out_data), axis=1)
-            #print (merge_output)
-            #print ('India')
-
+            #out_PricePoint_data.to_csv('./output_results/out_PricePoint_data.csv') 
+            
+            if TssTagNotPresent:
+                QuoteInformation_list = self.dataorganized(
+                    QuoteInformation_find, tag_quote_list, out_data)
+            elif TSSComponentincluded:
+                QuoteInformation_list = self.dataorganized(
+                    QuoteInformation_find, tag_quote_list + TAG_QUOTE_TSS_LIST, out_data)
+            else:
+                QuoteInformation_list = self.dataorganized(
+                    QuoteInformation_find, TAG_QUOTE_LIST + ["TSSComponentincluded"], out_data)
+                        
+            merge_output = pd.concat((QuoteInformation_list,out_data), axis=1)
+            #merge_output.to_csv('./output_results/merge_output1.csv')
+                                                                                                 
             RequestHeader_list = self.dataorganized(
                 RequestHeader_find, tag_header_list, merge_output)
-            #print (RequestHeader_list)
-            #print ('India')
+            #RequestHeader_list.to_csv('./output_results/RequestHeader_list.csv') 
+            
             merge_output_RequestHeader = pd.concat(
                 (RequestHeader_list, merge_output), axis=1)
-            #print(merge_output_RequestHeader)
-            #print ('India')
-
+            
             CustomerInformation_list = self.dataorganized(
                 CustomerInformation_find, CustomerInformation_tag_list,
                 merge_output_RequestHeader)
-            #print (CustomerInformation_list)
-            #print ('India')
-            final_output = pd.concat(
-                (CustomerInformation_list, merge_output_RequestHeader), axis=1)
-            #print (final_output)
-            #input ("test");
-            #print ('India')
-
-            final_output[
-                'quoteidnew'] = final_output['QuoteID'] + '-' + final_output['Countrycode']
-            final_output['WinLoss'] = 1
-            final_output['ComLowPofL'] = ''
-            final_output['ComMedPofL'] = ''
-            final_output['ComHighPofL'] = ''
-            final_output['ComMedPrice'] = ''
-            final_output['DealSize'] = ''
-            final_output['LogDealSize'] = ''
-            final_output['ComPctContrib'] = ''
-            # print(final_output)
-            #final_output.to_csv('C:/Users/IBM_ADMIN/Desktop/My folder/NA Region/Github Classes/quote_df_out_xml2df.csv')
-            # print ('India')
-
-            final_output = pd.DataFrame(final_output, columns=COLUMNS)
-           
-            final_output.columns = output_columns
-
-            final_output.reset_index()
             
-            if (final_output["ComBrand"].any() != 0):
-                final_output['ComBrand'] = final_output['ComBrand'].str.replace(
-                    '&amp;amp;', '&')
-                final_output['ComBrand'] = final_output['ComBrand'].str.replace(
-                    '&amp;', '&')
-           
-            int64list = INT64LIST
-            float64list = FLOAT64LIST
+            final_output11 = pd.concat(
+                (CustomerInformation_list, merge_output_RequestHeader), axis=1)  
+            #final_output11.to_csv('./output_results/final_output11.csv')
 
-            for i in np.arange(len(int64list)):
-                final_output[int64list[i]] = np.array(
-                    final_output[int64list[i]], dtype='int64')
-                
-                
-            for i in np.arange(len(float64list)):
-                final_output[float64list[i]] = np.array(
-                    final_output[float64list[i]], dtype='float64')
-                    
+            if TSSComponentincluded:
             
+            #if (TSSComponentincluded) and final_output11['TSSComponentincluded'][0]== 'Y':
+            #if final_output11['TSSComponentincluded'][0]== 'Y':
+                
+                TssComponents_find = QuoteInformation_find.getiterator('TssComponents')
+                                
+                #added TSS_COMPONENTS_TAG_LIST +++++++++++++++++++++++++++++++++++++++++++++
+                out_TSS_data = self.getdata(TssComponents_find,
+                                            Tss_components_tag_list)
+                #print (TSS_COMPONENTS_TAG_LIST)
+                out_TSS_data = pd.DataFrame(out_TSS_data)
+                
+                out_TSS_data.columns = Tss_components_tag_list
+                #out_TSS_data.to_csv('./output_results/xml_out_TSS_data.csv')
+                
+                out_TSS_data["ParentMapping_ComponentID"] = out_TSS_data.Componentid
+                                                                
+                final_output_TSS = pd.merge(final_output11, out_TSS_data, on='Componentid', how='left')
+                                
+                final_output_TSS['quoteidnew'] = final_output_TSS['QuoteID'] + '-' + final_output_TSS['Countrycode']
+                del final_output_TSS['QuoteID']
+                final_output_TSS['WinLoss'] = 1
+                final_output_TSS['ComLowPofL'] = ''
+                final_output_TSS['ComMedPofL'] = ''
+                final_output_TSS['ComHighPofL'] = ''
+                final_output_TSS['ComMedPrice'] = ''
+                final_output_TSS['DealSize'] = ''
+                final_output_TSS['LogDealSize'] = ''
+                final_output_TSS['ComPctContrib'] = ''
+            
+                #final_output = pd.DataFrame(final_output, columns=COLUMNS)
+                #final_output2 = pd.DataFrame(final_output_TSS)   
+                final_output = pd.DataFrame(final_output_TSS).rename(columns=RENAME_COL)
+                
+                final_output['ComRevDivCd'] = final_output['ComRevDivCd'].map(str) 
+                #final_output.to_csv('./output_results/TSSinc_out.csv')
+        
+                ComRevDivCd_orgi = '-'.join(final_output['ComRevDivCd'])
+                
+                final_output[['TSS_quantity','TSScomid','PTI0']] = final_output[['TSS_quantity','TSScomid','PTI0']].fillna(value=0)
+                # Replace NaN values for TSS col with 0
+                final_output[['basecharge','committedcharge','totalcharge','CMDAprice','Cost',
+                              "coverage_hours_days",	"coverage_hours",	"coverage_days",
+                              "sl_cntct",	"sl_fix_time",	"sl_onsite",	"sl_part_time"]] = final_output[['basecharge','committedcharge','totalcharge','CMDAprice','Cost',
+                                                                                     "coverage_hours_days",	"coverage_hours",	"coverage_days","sl_cntct",	"sl_fix_time",	"sl_onsite",	"sl_part_time"]].fillna(value=0.0)
+                #final_output.to_csv('./output_results/nann.csv')
+                            
+                int64list = INT64LIST_TSS 
+                float64list = FLOAT64LIST_TSS
+    
+                for i in np.arange(len(int64list)):
+                    final_output[int64list[i]] = np.array(
+                        final_output[int64list[i]], dtype='int64')
+                                    
+                for i in np.arange(len(float64list)):
+                    final_output[float64list[i]] = np.array(
+                        final_output[float64list[i]], dtype='float64')             
+                final_output.reset_index()   
+                
+                ComRevDivCd_orgi2 = final_output[['ComRevDivCd', 'Componentid','TSScomid']]
+
+                #final_output = final_output2.copy().rename(columns=RENAME_COL)
+                            
+            #if TSSCompincluded tag not present in final_output     
+            #elif (final_output11['TSSComponentincluded'][0] == 'N') or TssTagNotPresent:
+            else:
+            #elif TssTagNotPresent:    
+                final_output_NTSS = final_output11
+                                   
+                final_output_NTSS['quoteidnew'] = final_output_NTSS['QuoteID'] + '-' + final_output_NTSS['Countrycode']
+                del final_output_NTSS['QuoteID']
+                
+                final_output_NTSS['WinLoss'] = 1
+                final_output_NTSS['ComLowPofL'] = ''
+                final_output_NTSS['ComMedPofL'] = ''
+                final_output_NTSS['ComHighPofL'] = ''
+                final_output_NTSS['ComMedPrice'] = ''
+                final_output_NTSS['DealSize'] = ''
+                final_output_NTSS['LogDealSize'] = ''
+                final_output_NTSS['ComPctContrib'] = ''
+                
+                #final_output = pd.DataFrame(final_output, columns=COLUMNS)
+                #final_output3 = pd.DataFrame(final_output_NTSS)   
+                #final_output = final_output3.copy().rename(columns=RENAME_COL)
+                final_output = pd.DataFrame(final_output_NTSS).rename(columns=RENAME_COL)
+                #final_output.to_csv('./output_results/non_TSS.csv')
+                
+                final_output['ComRevDivCd'] = final_output['ComRevDivCd'].map(str) 
+                #final_output.to_csv('./output_results/TSSinc_out.csv')
+        
+                ComRevDivCd_orgi = '-'.join(final_output['ComRevDivCd'])
+
+                int64list = INT64LIST
+                float64list = FLOAT64LIST
+    
+                for i in np.arange(len(int64list)):
+                    final_output[int64list[i]] = np.array(
+                        final_output[int64list[i]], dtype='int64')
+                                    
+                for i in np.arange(len(float64list)):
+                    final_output[float64list[i]] = np.array(
+                        final_output[float64list[i]], dtype='float64')
+    
+                final_output.reset_index()    
+                ComRevDivCd_orgi2 = final_output[['ComRevDivCd', 'Componentid']]
+
+                #final_output.columns = output_columns
+                #print ("['TSSComponentincluded'][0] == 'N')")
+                
+            #final_output.to_csv('./output_results/TSSinc.csv')
+            final_output['ComBrand'] = final_output['ComBrand'].map(str)                                             
+            final_output['ComBrand'] = final_output['ComBrand'].str.replace('&amp;amp;', '&')
+            final_output['ComBrand'] = final_output['ComBrand'].str.replace('&amp;', '&')
+            #final_output.to_csv('./output_results/post.csv')
         except:
             RETURNCODE[0] = 1
             ERRORCODE[0] = 1
             ERRORDESCRIPTION[0] = "Invalid XML Format"
 
-            final_output, out_PricePoint_data = self.df_error()
-
+            final_output, out_PricePoint_data, ComRevDivCd_orgi2 = self.df_error()
+                                                                                                            
         ### Hotfix - ComRevDivCd (temporal, need to remove when having permanent solution)
         ### get the original ComRevDivCd and hard-coded to dummy XYZ
         #final_output['ComRevDivCd'] = str(final_output['ComRevDivCd'])
         # final_output['ComRevDivCd'] = 'XYZ'
-
+              
         # 10/03/2017, Jerry Yang
         # Hard-coded ComRevDivCd to Storage if in ['2D','2K','2W','U5','Y4','72'],
         # else hard-coded ComRevDivCd to Power
-        final_output['ComRevDivCd'] = final_output['ComRevDivCd'].map(str)
-                
-        ComRevDivCd_orgi = '-'.join(final_output['ComRevDivCd'])
-
-        ComRevDivCd_orgi2 = final_output[['ComRevDivCd', 'Componentid']]
+             
         ComRevDivCd_orgi2 = pd.DataFrame(ComRevDivCd_orgi2)
         ComRevDivCd_orgi2.drop_duplicates(keep='first', inplace=True)
 
+        #final_output.to_csv('./output_results/post_out.csv')
+        #ComRevDivCd_orgi2.to_csv('./output_results/post_out_comp.csv')
+                
         #Hotfix fix is only implimented for EMEA
         geomap_df = geomap
         #if (final_output['Countrycode'].all() in [x for x in geomap_df['Countrycode']]):
         Country_Code = final_output['Countrycode'].all()
-        #print (Country_Code)
-        #print ('IBM+++++++++')
-        geomap_df = geomap_df.fillna(
-            'NA'
-        )  #Since Python was considering NA country code as NAN/blank. Hence, replacing NAN/blank with NA.
+        
+        geomap_df = geomap_df.fillna('NA')  #Since Python was considering NA country code as NAN/blank. Hence, replacing NAN/blank with NA.
         result_df = geomap_df[(geomap_df['Countrycode'] == Country_Code)
                               & (geomap_df['Geo'].isin(['EMEA', 'NA','JP']))] #Hotfix implimented for Japan
         final_output['ComRevDivCd_Orig'] = final_output['ComRevDivCd']
@@ -255,13 +343,13 @@ class XML2dfConverter:
             ]), 'ComRevDivCd'] = 'Storage'
             final_output.loc[~(final_output.ComRevDivCd == 'Storage'),
                              'ComRevDivCd'] = 'Power'
-        
+
         ComRevDivCd_orgi1 = deepcopy(ComRevDivCd_orgi)
-        
+
         if final_output.empty:
             final_output = final_output.head(1)
 
         final_output1 = deepcopy(final_output)
         out_PricePoint_data1 = deepcopy(out_PricePoint_data)
-
+        
         return ComRevDivCd_orgi1, ComRevDivCd_orgi2, final_output1, out_PricePoint_data1

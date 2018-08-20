@@ -11,7 +11,25 @@ EMEA_FIELDS = ["Componentid", "Quantity", "UpgMES", "ComListPrice", "ComTMC",
                "Countrycode", "ChannelID", "Year", "Month",
                "EndOfQtr", "Indirect(1/0)", 'RequestingApplicationID', 'QuoteID',
                'ModelID', 'Version', 
-               'CustomerNumber', 'ClientSegCd', 'ClientSeg=E']
+               'CustomerNumber', 'ClientSegCd', 'ClientSeg=E','QuoteType']
+
+NEW_EMEA_FIELDS = [
+            'CustomerNumber', 'ClientSegCd', 'ClientSeg=E', 'CCMScustomerNumber',
+            'CustomerSecName', 'CustomerIndustryName', 'RequestingApplicationID',
+            'ModelID', 'Version', 'Countrycode', 'ChannelID', 'Year', 'Month',
+            'EndOfQtr', 'Indirect(1/0)', 'DomBuyerGrpID', 'DomBuyerGrpName',
+            'QuoteType', 'TSSComponentincluded', 'Quantity', 'UpgMES',
+            'ComListPrice', 'ComTMC', 'ComQuotePrice', 'ComDelgPriceL4',
+            'ComRevCat', 'ComRevDivCd', 'ComBrand', 'ComGroup', 'ComFamily',
+            'ComMT', 'ComMTM', 'ComQuotePricePofL', 'ComDelgPriceL4PofL',
+            'ComCostPofL', 'ComLogListPrice', 'ComMTMDesc', 'ComMTMDescLocal',
+            'ComCategory', 'ComSubCategory', 'ComSpclBidCode1', 'ComSpclBidCode2',
+            'ComSpclBidCode3', 'ComSpclBidCode4', 'ComSpclBidCode5',
+            'ComSpclBidCode6', 'HWPlatformid', 'FeatureId', 'FeatureQuantity',
+            'Level_1', 'Level_2', 'Level_3', 'Level_4', 'QuoteID', 'WinLoss',
+            'ComLowPofL', 'ComMedPofL', 'ComHighPofL', 'ComMedPrice', 'DealSize',
+            'LogDealSize', 'ComPctContrib', 'ComRevDivCd_Orig', 'Componentid'
+        ]
 
 # Data Fields for North America 
 NA_FIELDS = ["QuoteID", "ModelID", "Version", "Countrycode", 'WinLoss',
@@ -46,6 +64,7 @@ NA_FIELDS_BP = ["QuoteID", "ModelID", "Version", "Countrycode", 'WinLoss',
              "FeatureQuantity","ComBrand", "ComGroup", "ComFamily",
              "DomBuyerGrpID", "DomBuyerGrpName", "RequestingApplicationID",
              "Level_1", "Level_2", "Level_3", "Level_4","QuoteType"]
+
 #Fileds list for Japan
 JP_FIELDS = ["QuoteID", "ModelID", "Version", "Countrycode", 'WinLoss',
              "ChannelID", "Year", "Month", "EndOfQtr", "Indirect(1/0)",
@@ -75,6 +94,34 @@ JP_FIELDS_BP = ["QuoteID", "ModelID", "Version", "Countrycode", 'WinLoss',
              "FeatureQuantity","ComBrand", "ComGroup", "ComFamily",
              "DomBuyerGrpID", "DomBuyerGrpName", "RequestingApplicationID",
              "Level_1", "Level_2", "Level_3", "Level_4","QuoteType"]
+
+EMEA_TSS_FIELDS = [
+            'CustomerNumber', 'ClientSegCd', 'ClientSeg=E', 'CCMScustomerNumber',
+            'CustomerSecName', 'CustomerIndustryName', 'RequestingApplicationID',
+            'ModelID', 'Version', 'Countrycode', 'ChannelID', 'Year', 'Month',
+            'EndOfQtr', 'Indirect(1/0)', 'DomBuyerGrpID', 'DomBuyerGrpName',
+            'QuoteType', 'TSSComponentincluded', 'Quantity', 'UpgMES',
+            'ComListPrice', 'ComTMC', 'ComQuotePrice', 'ComDelgPriceL4',
+            'ComRevCat', 'ComRevDivCd', 'ComBrand', 'ComGroup', 'ComFamily',
+            'ComMT', 'ComMTM', 'ComQuotePricePofL', 'ComDelgPriceL4PofL',
+            'ComCostPofL', 'ComLogListPrice', 'ComMTMDesc', 'ComMTMDescLocal',
+            'ComCategory', 'ComSubCategory', 'ComSpclBidCode1', 'ComSpclBidCode2',
+            'ComSpclBidCode3', 'ComSpclBidCode4', 'ComSpclBidCode5',
+            'ComSpclBidCode6', 'HWPlatformid', 'FeatureId', 'FeatureQuantity',
+            'Level_1', 'Level_2', 'Level_3', 'Level_4', 'TSScomid', 'type', 'model',
+            'TSS_quantity', 'warranty', 'warrantyperiod', 'servoffdesc',
+            'servoffcode', 'servstartdate', 'servenddate', 'serviceduration',
+            'inststartdate', 'instenddate', 'serial', 'servlvldesc', 'servlvlcode',
+            'basecharge', 'committedcharge', 'totalcharge', 'PTI0', 'CMDAprice',
+            'Cost', 'QuoteID', 'WinLoss', 'ComLowPofL', 'ComMedPofL', 'ComHighPofL',
+            'ComMedPrice', 'DealSize', 'LogDealSize', 'ComPctContrib',
+            'ComRevDivCd_Orig', 'Componentid', "flex","ecs","coverage_hours_days",  
+            "coverage_hours","coverage_days","sl_cntct", "sl_fix_time",
+            "sl_onsite", "sl_part_time",    "p_uplift_comm", "TSSContstartdate",
+            "TSSContenddate","TSSContduration","TSSPricerefdate", 
+            "TSSPricoptdescription", "TSSFrameOffering", "ParentMapping_ComponentID",
+            "ChangePeriodStopDate","ChargeStartDate","ChargeEndDate","imt_code",'ctry_desc'
+             ]
 
 
 
@@ -145,3 +192,25 @@ class DataFieldsFilter():
             return df_JP_BP
         else:
             raise ValueError("The Quote is not of BP!")
+
+    def get_EMEA_TSS(self, df):
+        """Keep only EMEA model needed data fields.
+        """
+        if GeoDispatcher().is_EMEA_TSS(df):
+            df_EMEA_TSS = df[EMEA_TSS_FIELDS]
+            df_EMEA_TSS.loc[:,'GEO_CODE'] = 'EMEA'
+            df_EMEA_TSS = deepcopy(df_EMEA_TSS)
+            return df_EMEA_TSS
+        else:
+            raise ValueError("The Quote is not of TSS!")
+
+    def get_NEW_EMEA(self, df):
+        """Keep only EMEA model needed data fields.
+        """
+        if GeoDispatcher().is_NEW_EMEA(df):
+            df_NEW_EMEA = df[NEW_EMEA_FIELDS]
+            df_NEW_EMEA.loc[:,'GEO_CODE'] = 'EMEA'
+            df_NEW_EMEA = deepcopy(df_NEW_EMEA)
+            return df_NEW_EMEA
+        else:
+            raise ValueError("The Quote is not of TSS!")

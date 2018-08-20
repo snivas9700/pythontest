@@ -85,4 +85,3 @@ class ProdConsolidator:
 #df_out = ProdConsolidator().consolidate(df_in)
 
 #df_out.to_csv('C:/Users/IBM_ADMIN/Desktop/1XN/quote_df_modified.csv')
-

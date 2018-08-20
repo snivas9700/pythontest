@@ -529,7 +529,7 @@ def optimal_pricing_engine(model_ID, deployedmodelrules, quote_df, COP_l=0, COP_
     
     end_time = time.time() #stop a timer
     #print 'Elapsed time (milliseconds): ', int(1000 * (end_time - start_time))
-    #print ("REACHED END OF PricingEngine.optimal_pricing_engine function")
+    print ("REACHED END OF PricingEngine.optimal_pricing_engine function")
     return quote_df, total_deal_stats
 
 
@@ -614,6 +614,38 @@ def spread_optimal_price(quote_df, total_deal_stats):
     # This section loads the spread optimal prices to the quote_df dataframe
     quote_df['DealBotLineSpreadOptimalPrice'] = spread_mechanism['spread_price']
     #quote_df.to_csv(data_path + 'spread_optimal_price.csv', index=False)
+    
+    for i in range(len(quote_df)): #since ComListPrice was coming greater than DealBotLineSpreadOptimalPrice. So, to correct that capping done on 26th Mar 2018.
+        if (quote_df.loc[i, 'DealBotLineSpreadOptimalPrice'] > quote_df.loc[i, 'ComListPrice']):
+            quote_df.loc[i, 'DealBotLineSpreadOptimalPrice'] = quote_df.loc[i, 'ComListPrice']
+    #quote_df.to_csv(data_path + 'spread_optimal_price.csv', index=False)
+            
+    for i in range(len(quote_df)): #since ComListPrice was coming greater than DealBotLineSpreadOptimalPrice. So, to correct that capping done on 26th Mar 2018.
+        if ((quote_df.loc[i, 'ComTMC'] < quote_df.loc[i, 'ComListPrice']) & (quote_df.loc[i, 'DealBotLineSpreadOptimalPrice'] < quote_df.loc[i, 'ComTMC'])):
+            quote_df.loc[i, 'DealBotLineSpreadOptimalPrice'] = quote_df.loc[i, 'ComTMC']
+    
+    for i in range(len(quote_df)): #since ComListPrice was coming greater than OptimalPrice. So, to correct that capping done on 26th Mar 2018.
+        if (quote_df.loc[i, 'OptimalPrice'] > quote_df.loc[i, 'ComListPrice']):
+            quote_df.loc[i, 'OptimalPrice'] = quote_df.loc[i, 'ComListPrice']
+    #quote_df.to_csv(data_path + 'spread_optimal_price.csv', index=False)
+            
+    for i in range(len(quote_df)): #since ComListPrice was coming greater than OptimalPrice. So, to correct that capping done on 26th Mar 2018.
+        if ((quote_df.loc[i, 'ComTMC'] < quote_df.loc[i, 'ComListPrice']) & (quote_df.loc[i, 'OptimalPrice'] < quote_df.loc[i, 'ComTMC'])):
+            quote_df.loc[i, 'OptimalPrice'] = quote_df.loc[i, 'ComTMC']
+    #Optimal price is less ComTMC and ComTMC is less then ListPrice then cap optimal price with ComTMC and recalucate the intervals
+    #for i in range(len(quote_df)):
+     #   quote_df.loc[i, 'OptimalPriceIntervalLow'], quote_df.loc[i, 'OptimalPriceIntervalHigh'] = BPF.OptPriceConfIntervl(quote_df.loc[i, 'OptimalPrice'], quote_df.loc[i,'AdjComLowPrice'], quote_df.loc[i,'AdjComMedPrice'], quote_df.loc[i,'AdjComHighPrice'], quote_df.loc[i, 'ComTMC'])
+    
+    for i in range(len(quote_df)):
+        quote_df.loc[i, 'L1'], quote_df.loc[i, 'H1'] = BPF.OptPriceConfIntervl(quote_df.loc[i, 'OptimalPrice'], quote_df.loc[i,'AdjComLowPrice'], quote_df.loc[i,'AdjComMedPrice'], quote_df.loc[i,'AdjComHighPrice'], quote_df.loc[i, 'ComTMC'])
+        quote_df.loc[i, 'L2'], quote_df.loc[i, 'H2'] = BPF.OptPriceConfIntervl(quote_df.loc[i, 'DealBotLineSpreadOptimalPrice'], quote_df.loc[i,'AdjComLowPrice'], quote_df.loc[i,'AdjComMedPrice'], quote_df.loc[i,'AdjComHighPrice'], quote_df.loc[i, 'ComTMC'])
+        quote_df.loc[i,'OptimalPriceIntervalLow'] = min(quote_df.loc[i, 'L1'],quote_df.loc[i, 'L2'])
+        quote_df.loc[i,'OptimalPriceIntervalHigh'] = max(quote_df.loc[i, 'H1'],quote_df.loc[i, 'H2'])
+    
+    del quote_df['L1']
+    del quote_df['L2']
+    del quote_df['H1']
+    del quote_df['H2']
     
     return quote_df
 

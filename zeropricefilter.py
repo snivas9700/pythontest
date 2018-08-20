@@ -31,10 +31,10 @@ class ZeroPriceFilter:
         else:
             df_zero_price_0 = df[df["ComListPrice"] == 0]
             df1 = df[df["ComListPrice"] != 0]
-            df1 = pd.DataFrame(df1, columns = NON_ZERO_PRICE)
+            df1 = pd.DataFrame(df1)
             df_zero_price_0 = pd.DataFrame(df_zero_price_0)
     
-            df_zero_price_0['GEO_CODE'] = np.nan
+            #df_zero_price_0['GEO_CODE'] = np.nan
             df_zero_price_0['TreeNode'] = 0
             df_zero_price_0['ComLowPofL'] = 0
             df_zero_price_0['ComMedPofL'] = 0
@@ -77,6 +77,9 @@ class ZeroPriceFilter:
             df_zero_price_0['COPQuotePriceWinProb'] = 0
             df_zero_price_0['COPQuotePriceGP'] = 0
             df_zero_price_0['COPQuotePriceExpectedGP'] = 0
+            df_zero_price_0['ComLowPrice'] = 0
+            df_zero_price_0['ComMedPrice'] = 0
+            df_zero_price_0['ComHighPrice'] = 0 
     
             df_zero_price_0.reset_index(drop=True, inplace=True)
             df1.reset_index(drop=True, inplace=True)

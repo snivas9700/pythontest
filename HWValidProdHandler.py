@@ -44,20 +44,33 @@ def validator_updates(fixed_quotes):
         
         #Apply the capping rules based on the validator rules
         if (fixed_quotes.validator_type == 'validate_min'):
+            # If High, Optimal and Low > min_price no adjustment needed
+            test_cond = fixed_quotes['AdjComLowPrice'] > fixed_quotes['min_price'] and fixed_quotes['AdjComHighPrice'] > fixed_quotes['min_price'] and fixed_quotes['OptimalPrice'] > fixed_quotes['min_price']
+            if ( test_cond ):
+                fixed_quotes['AdjComLowPrice'] = fixed_quotes['AdjComLowPrice']  # No change required
+            else:
+                fixed_quotes['AdjComLowPrice'] = fixed_quotes['min_price']
             fixed_quotes['AdjComHighPrice'] = fixed_quotes['AdjComHighPrice'] 
-            fixed_quotes['AdjComLowPrice'] = fixed_quotes['min_price']
+            if (fixed_quotes['AdjComHighPrice'] <= fixed_quotes['AdjComLowPrice'] ):
+                fixed_quotes['AdjComHighPrice'] = fixed_quotes['AdjComLowPrice'] + 2
         elif (fixed_quotes.validator_type == 'validate_max'):
             fixed_quotes['AdjComHighPrice'] = fixed_quotes['max_price'] 
             fixed_quotes['AdjComLowPrice'] = fixed_quotes['AdjComLowPrice']
+            if (fixed_quotes['AdjComLowPrice'] >= fixed_quotes['AdjComHighPrice'] ):
+                fixed_quotes['AdjComLowPrice'] = fixed_quotes['AdjComHighPrice'] - 2
         elif (fixed_quotes.validator_type == 'validate_fixed'):
             fixed_quotes['AdjComHighPrice'] = fixed_quotes['max_price'] 
             fixed_quotes['AdjComLowPrice'] = fixed_quotes['min_price']
-            #fixed_quotes['OptimalPrice'] = (fixed_quotes['AdjComHighPrice']/fixed_quotes['AdjComLowPrice'])/2.0
         
         #To handle scenario when AdjComHighPrice and AdjComLowPrice price are same
         if (fixed_quotes['AdjComHighPrice'] == fixed_quotes['AdjComLowPrice'] ):
-            fixed_quotes['AdjComLowPrice'] = fixed_quotes['AdjComLowPrice']  - 1
+            if ( ( fixed_quotes['AdjComLowPrice'] == fixed_quotes['ComListPrice'] ) | (fixed_quotes['Countrycode'] == 'JP') ) :
+                fixed_quotes['AdjComLowPrice'] = fixed_quotes['AdjComLowPrice']  - 1
             fixed_quotes['AdjComHighPrice'] = fixed_quotes['AdjComLowPrice'] + 2
+            fixed_quotes['AdjComMedPrice']  = fixed_quotes['AdjComLowPrice'] + 1
+            fixed_quotes['OptimalPrice']  = fixed_quotes['AdjComLowPrice'] + 1
+            fixed_quotes['DealBotLineSpreadOptimalPrice'] = fixed_quotes['AdjComLowPrice'] + 1
+            
         
         #Adjust Optimal rules to respect the rules
         if (fixed_quotes['OptimalPrice'] >= fixed_quotes['AdjComHighPrice']):
@@ -88,21 +101,21 @@ def validator_updates(fixed_quotes):
 
         
         #Adjustments for OptimalPriceIntervalLow & OptimalPriceIntervalHigh
-        #Call this only if OP has been changed
-        if fixed_quotes['OptimalPrice'] != OP_Orig:
+        #Call this only if OP has been changed or when OP is oustide interval ranges
+        if ( fixed_quotes['OptimalPrice'] != OP_Orig or (fixed_quotes['OptimalPrice'] < fixed_quotes['OptimalPriceIntervalLow'] or fixed_quotes['OptimalPrice'] > fixed_quotes['OptimalPriceIntervalHigh'])):
             fixed_quotes['OptimalPriceIntervalLow'], fixed_quotes['OptimalPriceIntervalHigh'] = BPF.OptPriceConfIntervl(fixed_quotes['OptimalPrice'], fixed_quotes['AdjComLowPrice'], fixed_quotes['AdjComMedPrice'], fixed_quotes['AdjComHighPrice'], fixed_quotes['ComTMC'])
         
         #Adjust OptimalPriceIntervalHigh and OptimalPriceIntervalLow price
         if ( (fixed_quotes['OptimalPriceIntervalHigh'] > fixed_quotes['AdjComHighPrice']) or (fixed_quotes['OptimalPriceIntervalHigh'] <= fixed_quotes['AdjComLowPrice'])):
-                fixed_quotes['OptimalPriceIntervalLow'] = fixed_quotes['AdjComHighPrice']
+                fixed_quotes['OptimalPriceIntervalHigh'] = fixed_quotes['AdjComHighPrice']
         if ( (fixed_quotes['OptimalPriceIntervalLow'] >= fixed_quotes['AdjComHighPrice']) or (fixed_quotes['OptimalPriceIntervalLow'] < fixed_quotes['AdjComLowPrice'])):
                 fixed_quotes['OptimalPriceIntervalLow'] = fixed_quotes['AdjComLowPrice']
                 
         #Adjust DealBotLineSpreadOptimalPrice to respect the rules
-        if (fixed_quotes['DealBotLineSpreadOptimalPrice'] >= fixed_quotes['AdjComHighPrice']):
-                fixed_quotes['DealBotLineSpreadOptimalPrice'] = fixed_quotes['AdjComHighPrice'] - 1.0
-        elif (fixed_quotes['DealBotLineSpreadOptimalPrice'] <= fixed_quotes['AdjComLowPrice']):
-                fixed_quotes['DealBotLineSpreadOptimalPrice'] = fixed_quotes['AdjComLowPrice'] + 1.0
+        if (fixed_quotes['DealBotLineSpreadOptimalPrice'] >= fixed_quotes['OptimalPriceIntervalHigh']):
+                fixed_quotes['DealBotLineSpreadOptimalPrice'] = fixed_quotes['OptimalPriceIntervalHigh'] - 1.0
+        elif (fixed_quotes['DealBotLineSpreadOptimalPrice'] <= fixed_quotes['OptimalPriceIntervalLow']):
+                fixed_quotes['DealBotLineSpreadOptimalPrice'] = fixed_quotes['OptimalPriceIntervalLow'] + 1.0
         
         return fixed_quotes
         
@@ -144,6 +157,10 @@ class HWValidProdHandler:
         '''
         validator_quotes['OptimalPrice'] = np.where((validator_quotes['OptimalPrice'] > validator_quotes['ComListPrice'])
                      , validator_quotes['ComListPrice'], validator_quotes['OptimalPrice'])
+        
+        #Capping for DealBotLineSpreadOptimalPrice when it is higher than List Price
+        validator_quotes['DealBotLineSpreadOptimalPrice'] = np.where((validator_quotes['DealBotLineSpreadOptimalPrice'] > validator_quotes['ComListPrice'])
+                     , validator_quotes['ComListPrice'], validator_quotes['DealBotLineSpreadOptimalPrice'])
        
         validator_quotes_out = copy.deepcopy(validator_quotes)
 

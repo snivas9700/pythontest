@@ -32,7 +32,8 @@ class HWValidator():
 
         if discounts_df.empty:
             fixed_quote_columns = quote_df.columns.tolist()
-            fixed_quote_columns.append("DiscountedPrice")
+            fixed_quote_columns.append("max_price")
+            fixed_quote_columns.append("min_price")
             fixed_quotes1 = pd.DataFrame(columns=fixed_quote_columns)
             non_fixed_quotes1 = copy.deepcopy(quote_df)
 
@@ -75,8 +76,7 @@ class HWValidator():
             # Evaluates the expression by using df and geomap.
             # Ex. df.loc[(df.ComMT == '6911a') & (df.CountryCode.isin(geomap.loc[(geomap.Geo == 'JP'), 'CountryCode']))]
             exec("%s=%s" % ("item", discount.Condition), exec_var)
-            exec("%s=%s" % ("min_price", discount.MinCondition), exec_var)
-            exec_var["item"]['min_price'] = exec_var["min_price"]
+            exec("%s" % (discount.MinCondition), exec_var)
             fixed_quotes = fixed_quotes.append(exec_var["item"])
         
         #Assign back the max_value

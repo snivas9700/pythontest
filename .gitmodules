@@ -1,3 +1,3 @@
 [submodule "engine"]
-	path = NA_Direct
+	path = NA
 	url = git@github.ibm.com:Cognitive-Pricing/copra_hw.git

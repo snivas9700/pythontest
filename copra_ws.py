@@ -15,32 +15,30 @@ import sys
 
 from flask import Flask, request
 from system import System
-from NA_Direct.shared.io_utils import load_models as load_direct_models
+from NA.shared.io_utils import load_models as load_models_NA
+from JP.shared.io_utils import load_models as load_models_JP
 import time
 import xml.etree.ElementTree as etree
-
-# TEMP: Currently we have to separate the NA BP and NA Direct model code
-from NA_BP.io_utils import load_models as load_bp_models
 
 app = Flask(__name__)
 sys = System()
 
 print("Please wait, model is loading")
 
+# TODO: Load the EMEA LME models here
 loaded_models = {
     "Direct": {
-        "NA": load_direct_models("NA_direct_nonSAPHANA_apprved_quant_intercept", compressed=False),
-        "JP": load_direct_models("JP_direct", compressed=False),
+        "NA": load_models_NA("NA_Direct_July20", compressed=False),
+        "JP": load_models_JP("JP_direct", compressed=False),
     },
     
     "BP": {
-        "NA": load_bp_models("NA", compressed=False),
-        "JP": load_direct_models("JP_BP", compressed=False),
+        "NA": load_models_NA("NA_BP_July20", compressed=False),
+        "JP": load_models_JP("JP_BP", compressed=False),
     }
 }
 
 print("Model load complete")
-
 
 @app.route('/optimalPricingEngine/<modelId>', methods=['POST'])
 def call_system(modelId):
@@ -62,4 +60,4 @@ def call_system(modelId):
 
 
 if __name__ == "__main__":
-    app.run(debug=False, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port = 5001)

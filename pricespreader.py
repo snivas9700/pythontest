@@ -167,6 +167,7 @@ class PriceSpreader:
     
         # This section loads the spread optimal prices to the quote_df_all dataframe
         quote_df_all['DealBotLineSpreadOptimalPrice'] = spread_mechanism['spread_price']
+        """
         for i in range(len(quote_df_all)): #since ComListPrice was coming greater than DealBotLineSpreadOptimalPrice. So, to correct that capping done on 26th Mar 2018.
             if (quote_df_all.loc[i, 'DealBotLineSpreadOptimalPrice'] > quote_df_all.loc[i, 'ComListPrice']):
                 quote_df_all.loc[i, 'DealBotLineSpreadOptimalPrice'] = quote_df_all.loc[i, 'ComListPrice']
@@ -198,14 +199,5 @@ class PriceSpreader:
         del quote_df_all['L2']
         del quote_df_all['H1']
         del quote_df_all['H2']
-        
-        
-        
-        #print (quote_df_all['Year'])
-        #print ("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL")
+        """       
         return quote_df_all
-        
-    
-    
-    
-    
