@@ -1,0 +1,9 @@
+Condition,MinCondition,MaxCondition
+"df.loc[df.ComMT.isin(['6661a', '6662a', '6663a', '6664a'])]",,item['ComListPrice']* 0.3
+"df.loc[df.ComMT.isin(['7014a', '7042a', '7316a', '7063a', '7965a'])]",item['ComTMC']*0.8,
+df.loc[df.ComMT == '9009a'],item['ComListPrice']*0.75,item['ComListPrice']* 0.70
+df.loc[df.ComMT == '9223a'],item['ComTMC']/0.9,
+"df.loc[df.ComMT.isin(['8005a', '9008a'])]",,item['ComTMC']/0.8
+df.loc[df.ComMTM == '5639-RH7a'],item['ComTMC']/0.81,item['ComTMC']/0.8
+df.loc[df.ComMTM == '5639-SAPa'],item['ComTMC']/0.9,item['ComListPrice']*0.1
+df.loc[df.ComMTM == '8335-GTGa'],item['ComListPrice']* 0.8,item['ComTMC']/0.2
