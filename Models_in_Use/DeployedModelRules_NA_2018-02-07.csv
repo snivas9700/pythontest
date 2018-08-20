@@ -1,4 +1,0 @@
-model_ID,seg_model_file_name,quote_id_col,ref_prc_col,cost_col,quote_prc_col,prc_col,x_col,first,last,psych_factor,quote_attribute_cols,y_intercept
-CHW_NA,CHW_NA_SegTree,QuoteID,ComListPrice,ComTMC,ComQuotePrice,ComQuotePricePofL,ComCostPofL,ComRevCat,ComMTM,1.04,"['ComMedPofL','ComLogListPrice', 'LogDealSize','ComPctContrib', 'UpgMES','ClientSeg=E','Indirect(1/0)','EndOfQtr','ComDelgPriceL4PofL']",FALSE
-CHW_CA,CHW_NA_SegTree,QuoteID,ComListPrice,ComTMC,ComQuotePrice,ComQuotePricePofL,ComCostPofL,ComRevCat,ComMTM,1.04,"['ComMedPofL','ComLogListPrice', 'LogDealSize','ComPctContrib', 'UpgMES','ClientSeg=E','Indirect(1/0)','EndOfQtr','ComDelgPriceL4PofL']",FALSE
-CHW_US,CHW_NA_SegTree,QuoteID,ComListPrice,ComTMC,ComQuotePrice,ComQuotePricePofL,ComCostPofL,ComRevCat,ComMTM,1.04,"['ComMedPofL','ComLogListPrice', 'LogDealSize','ComPctContrib', 'UpgMES','ClientSeg=E','Indirect(1/0)','EndOfQtr','ComDelgPriceL4PofL']",FALSE
